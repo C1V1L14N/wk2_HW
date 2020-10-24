@@ -8,9 +8,21 @@ class Song:
         self.genre = genre
         self.explicit = explicit
         self.playlist = []
-        
-        
-
+        # self.playlist_1 = [
+        #     {"title": "xxx", "artist" : "xxx", "duration" : 123, "genre" : "xxx", "explicit" : bool}
+        #     {"title": "xxx", "artist" : "xxx", "duration" : 123, "genre" : "xxx", "explicit" : bool}
+        #     {"title": "xxx", "artist" : "xxx", "duration" : 123, "genre" : "xxx", "explicit" : bool}
+        #     ]
+        # self.playlist_2 = [
+        #     {"title": "xxx", "artist" : "xxx", "duration" : 123, "genre" : "xxx", "explicit" : bool}
+        #     {"title": "xxx", "artist" : "xxx", "duration" : 123, "genre" : "xxx", "explicit" : bool}
+        #     {"title": "xxx", "artist" : "xxx", "duration" : 123, "genre" : "xxx", "explicit" : bool}
+        #     ]
+        # self.playlist_3 = [
+        #     {"title": "xxx", "artist" : "xxx", "duration" : 123, "genre" : "xxx", "explicit" : bool}
+        #     {"title": "xxx", "artist" : "xxx", "duration" : 123, "genre" : "xxx", "explicit" : bool}
+        #     {"title": "xxx", "artist" : "xxx", "duration" : 123, "genre" : "xxx", "explicit" : bool}
+        #     ]
 
     def add_song(self, song):
         self.playlist.append(song)

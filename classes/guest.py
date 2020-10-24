@@ -9,7 +9,3 @@ class Guest:
 
     
 
-    # def remove_guest(self, guest_to_remove):
-    #     for person in self.guest_list:
-    #         if person.name == guest_to_remove:
-    #             self.guest_list.remove(person)

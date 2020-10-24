@@ -2,6 +2,7 @@ import unittest
 
 from classes.room import *
 from classes.guest import *
+from classes.song import *
 
 class TestRoom(unittest.TestCase):
     def setUp(self):
@@ -28,7 +29,49 @@ class TestRoom(unittest.TestCase):
         self.room.add_guest(new_guest)
         self.assertEqual(1, len(self.room.guest_list))
 
-    # def test_remove_guest(self):
-    #     self.guest.add_guest(self.guest)
-    #     self.guest.remove_guest("Dick")
-    #     self.assertEqual(0, len(self.guest.guest_list))
+    def test_remove_guest(self):
+        self.guest = Guest("Hannah", 23, 1500, "We are the Cheeky Girls")
+        self.room.add_guest(self.guest)
+        self.room.remove_guest("Hannah")
+        self.assertEqual(0, len(self.room.guest_list))
+
+    # def test_find_guest(self):
+    #     self.assertEqual(False, self.room.find_guest("Hannah"))
+
+    def test_find_guest(self):
+        new_guest = Guest("Hannah", 23, 1500, "We are the Cheeky Girls")
+        self.room.add_guest(new_guest)
+        self.assertEqual(True, self.room.find_guest("Hannah"))
+
+    def test_checkin_guest_to_room(self):
+        self.room = Room("80's room", 10, 1000)
+        self.guest = Guest("Hannah", 23, 1500, "We are the Cheeky Girls")
+        self.room.checkin_guest(self.room, self.guest)
+        self.assertEqual("Hannah", self.room.guest_list[0].name)
+
+    def test_checkout_guest_from_room(self):
+        self.room = Room("80's room", 10, 1000)
+        self.guest = Guest("Hannah", 23, 1500, "We are the Cheeky Girls")
+        self.room.checkin_guest(self.room, self.guest)
+        self.assertEqual("Hannah", self.room.guest_list[0].name)
+        self.room.checkout_guest(self.room, self.guest)
+        self.assertEqual(False, self.room.find_guest("Hannah"))
+
+    def test_add_song_to_room(self):
+        self.room = Room("80's room", 10, 1000)
+        self.song = Song("With or Without You", "U2", 4.56, "pop", False)
+        self.room.playlist(self.room, self.song)
+        self.assertEqual("With or Without You", self.room.playlist[0].name)
+
+    def test_remove_song_from_room(self):
+        self.room = Room("80's room", 10, 1000)
+        self.song = Song("With or Without You", "U2", 4.56, "pop", False)
+        self.room.playlist(self.room, self.song)
+        self.assertEqual("With or Without You", self.room.playlist[0].name)
+        self.room.remove_song_from_room(self.room, self.song)
+        self.assertEqual(False, self.room.playlist("With or Without You"))
+
+    def test_find_song(self):
+        new_song = Song("With or Without You", "U2", 4.56, "pop", False)
+        self.room.add_song(new_song)
+        self.assertEqual(True, self.room.find_guest("Hannah"))
