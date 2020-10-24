@@ -1,6 +1,7 @@
 import unittest
 
 from classes.room import *
+from classes.guest import *
 
 class TestRoom(unittest.TestCase):
     def setUp(self):
@@ -16,11 +17,18 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(500, self.room.price)
 
 # test_create_room
-    # def test_add_room(self):
-    #     new_room = Room("80's Room", 10, 1000)
-    #     self.room.add_room(new_room)
-    #     self.assertEqual(1, len(self.room_list.add_room))
+    def test_add_room(self):
+        new_room = Room("80's Room", 10, 1000)
+        self.room.add_room(new_room)
+        self.assertEqual(1, len(self.room.room_list))
 
-    # def test_find_song(self):
-    #     self.song.add_song(self.song)
-    #     self.assertEqual(True, self.song.find_song("Believe"))
+    # test_create_guest
+    def test_add_guest(self):
+        new_guest = Guest("Hannah", 23, 1500, "We are the Cheeky Girls")
+        self.room.add_guest(new_guest)
+        self.assertEqual(1, len(self.room.guest_list))
+
+    # def test_remove_guest(self):
+    #     self.guest.add_guest(self.guest)
+    #     self.guest.remove_guest("Dick")
+    #     self.assertEqual(0, len(self.guest.guest_list))
