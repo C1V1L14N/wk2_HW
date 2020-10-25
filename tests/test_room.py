@@ -57,21 +57,23 @@ class TestRoom(unittest.TestCase):
         self.room.checkout_guest(self.room, self.guest)
         self.assertEqual(False, self.room.find_guest("Hannah"))
 
+    def test_find_song(self):
+        self.new_song = Song("With or Without You", "U2", 4.56, "pop", False)
+        self.room = Room("80's room", 10, 1000)
+        self.room.add_song_to_room(self.room, self.new_song)
+        self.assertEqual(True, self.room.find_song("With or Without You"))
+
     def test_add_song_to_room(self):
         self.room = Room("80's room", 10, 1000)
         self.song = Song("With or Without You", "U2", 4.56, "pop", False)
-        self.room.playlist(self.room, self.song)
-        self.assertEqual("With or Without You", self.room.playlist[0].name)
+        self.room.add_song_to_room(self.room, self.song)
+        self.assertEqual("With or Without You", self.room.playlist[0].title)
 
     def test_remove_song_from_room(self):
         self.room = Room("80's room", 10, 1000)
         self.song = Song("With or Without You", "U2", 4.56, "pop", False)
-        self.room.playlist(self.room, self.song)
-        self.assertEqual("With or Without You", self.room.playlist[0].name)
+        self.room.add_song_to_room(self.room, self.song)
+        self.assertEqual("With or Without You", self.room.playlist[0].title)
         self.room.remove_song_from_room(self.room, self.song)
-        self.assertEqual(False, self.room.playlist("With or Without You"))
+        self.assertEqual(False, self.room.find_song("With or Without You"))
 
-    def test_find_song(self):
-        new_song = Song("With or Without You", "U2", 4.56, "pop", False)
-        self.room.add_song(new_song)
-        self.assertEqual(True, self.room.find_guest("Hannah"))

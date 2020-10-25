@@ -35,14 +35,16 @@ class Room:
     def add_song_to_room(self, room, song):
         self.playlist.append(song)
 
+    def find_song(self, name):
+        for song in self.playlist:
+            if song.title == name:
+                return True
+        return False
+
+
     def remove_song_from_room(self, room, song):
         self.playlist.remove(song)
 
-    def find_song(self, name):
-        for song in self.playlist:
-            if song.name == name:
-                return True
-        return False
 
     
 
