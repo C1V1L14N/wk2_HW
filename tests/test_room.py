@@ -77,3 +77,32 @@ class TestRoom(unittest.TestCase):
         self.room.remove_song_from_room(self.room, self.song)
         self.assertEqual(False, self.room.find_song("With or Without You"))
 
+    def test_get_guest_wallet(self):
+        self.guest = Guest("Hannah", 23, 1500, "We are the Cheeky Girls")
+        self.room.get_guest_wallet(self.guest)
+        self.assertEqual(1500, self.guest.wallet)
+    
+    def test_customer_pay_money(self):
+        self.room = Room("80's room", 10, 1000)
+        self.guest = Guest("Hannah", 23, 1500, "We are the Cheeky Girls")
+        self.room.customer_pay_money(self.room, self.guest)
+        self.assertEqual(500, self.guest.wallet)
+
+    def test_capacity_limit(self):
+        self.room = Room("90's room", 4, 1000)
+        self.guest = Guest("Hannah", 23, 1500, "We are the Cheeky Girls")
+        self.room.add_guest(self.guest)
+        self.room.add_guest(self.guest)
+        self.room.add_guest(self.guest)
+        self.room.add_guest(self.guest)
+        self.room.add_guest(self.guest)
+        self.assertEqual(4, len(self.room.guest_list))
+
+
+    def test_guest_fave_song(self):
+        self.room = Room("90's room", 4, 1000)
+        self.guest = Guest("Hannah", 23, 1500, "With or Without You")
+        self.song = Song("With or Without You", "U2", 4.56, "pop", False)
+        self.room.add_song_to_room(self.room, self.song)
+        self.assertEqual("YASS!", self.room.guest_fave_song(self.guest))
+
